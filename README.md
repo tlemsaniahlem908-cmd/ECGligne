@@ -91,11 +91,6 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 <sub>Per-artifact reports: **Model A** (NORM vs MI+STTC) — OOF Acc 90.96 %, AUC 0.9703 ·
 **Model A1** (NORM vs MI+STTC+CD) — Test Acc 88.63 %, AUC 0.9551. See [`results/`](results/).</sub>
 
-<p align="left">
-  <img src="docs/figures/modelA_roc.png" width="46%" alt="Model A ROC"/>
-  <img src="docs/figures/modelA_confusion_test.png" width="46%" alt="Model A confusion matrix"/>
-</p>
-
 ### Multiclass diagnosis — MI / STTC / CD
 
 **Overall accuracy 80.16 %**, macro AUC **0.925**.
@@ -110,11 +105,6 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 Pairwise separability: **STTC vs CD** 91.0 % (AUC 0.948) · **MI vs CD** 89.5 % (AUC 0.935) ·
 **MI vs STTC** 85.2 % (AUC 0.919 — the hardest pair, as infarction and repolarization
 changes share morphology).
-
-<p align="left">
-  <img src="docs/figures/modelB_roc.png" width="46%" alt="Model B ROC"/>
-  <img src="docs/figures/modelB_confusion_test.png" width="46%" alt="Model B confusion matrix"/>
-</p>
 
 When several pathologies coexist, labels follow a clinically-motivated priority
 **MI > STTC > CD**, so the most time-critical condition is never masked.
@@ -133,7 +123,6 @@ ECG_Final_Pipeline/
 ├── esp_diag.py / esp_monitor.py   # ESP32 serial diagnostics
 ├── esp32_ecg_real_ecg/    # ESP32 firmware (Arduino .ino) — receives ECG, streams via BLE
 ├── results/               # per-model JSON metric reports (committed)
-├── docs/figures/          # ROC curves & confusion matrices used above
 └── GUIDE_TEST.txt         # step-by-step end-to-end test guide (FR)
 ```
 
