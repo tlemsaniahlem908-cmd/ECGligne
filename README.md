@@ -92,6 +92,8 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 | Specificity (recall NORM) | 91.69 % |
 | Confusion — TN / FP / FN / TP | 883 / 80 / 107 / 821 |
 
+<sub>Detailed per-model JSON reports are in [`results/`](results/).</sub>
+
 ### Multiclass diagnosis — MI / STTC / CD
 
 **Overall accuracy 80.16 %**, macro AUC **0.925**.
@@ -124,6 +126,7 @@ ECG_Final_Pipeline/
 ├── send_ecg_to_esp32.py   # stream a real PTB-XL ECG to the ESP32 over USB serial
 ├── esp_diag.py / esp_monitor.py   # ESP32 serial diagnostics
 ├── esp32_ecg_real_ecg/    # ESP32 firmware (Arduino .ino) — receives ECG, streams via BLE
+├── results/               # per-model JSON metric reports (committed)
 └── GUIDE_TEST.txt         # step-by-step end-to-end test guide (FR)
 ```
 

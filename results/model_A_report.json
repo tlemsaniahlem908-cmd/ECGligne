@@ -1,0 +1,16 @@
+{
+  "model": "Model A Strong \u2014 NORM vs MI+STTC",
+  "threshold": 0.301,
+  "oof_report": {
+    "threshold": 0.301,
+    "accuracy": 0.9095788604459125,
+    "auc": 0.9703163369225671,
+    "f1_macro": 0.9095776118764345,
+    "f1_weighted": 0.9095746787290891,
+    "f1_abnormal": 0.9099136157959687,
+    "precision_abnormal": 0.8987694450893894,
+    "recall_abnormal_sensitivity": 0.9213376175175533,
+    "specificity_norm": 0.8980236229680739,
+    "precision_norm": 0.9207434052757794,
+    "recall_norm": 0.8980236229680739,
+    "tn": 
