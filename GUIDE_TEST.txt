@@ -1,0 +1,91 @@
+=====================================================================
+GUIDE DE TEST — CHAINE COMPLETE  (vrai ECG -> ESP32 -> mobile -> IA)
+=====================================================================
+
+LE FLUX :
+  Python (vrai ECG PTB-XL) --USB--> ESP32 --Bluetooth--> Mobile --WiFi--> Serveur IA -> Diagnostic
+
+
+FICHIERS PREPARES :
+  - esp32_ecg_real_ecg/esp32_ecg_real_ecg.ino  -> a flasher dans l'ESP32 (ecoute le vrai ECG)
+  - send_ecg_to_esp32.py                        -> envoie le vrai ECG (sur le PC)
+  - ai_server.py                                -> serveur IA (sur le PC)
+
+
+=====================================================================
+ETAPE 0 — VERIFIER 2 REGLAGES
+=====================================================================
+
+1) Le PORT de l'ESP32 :
+   - Branche l'ESP32 en USB
+   - Ouvre Arduino IDE > Outils > Port  -> note le port (ex: COM3, COM4...)
+   - Mets ce port dans send_ecg_to_esp32.py :  SERIAL_PORT = "COM3"
+
+2) L'adresse du serveur IA (pour le mobile) :
+   - Sur le meme PC          : http://localhost:8000/predict_ecg
+   - Depuis le mobile (WiFi) : http://10.72.170.154:8000/predict_ecg
+   - (le PC et le mobile doivent etre sur le MEME WiFi)
+
+
+=====================================================================
+ETAPE 1 — FLASHER L'ESP32
+=====================================================================
+   - Ouvre  esp32_ecg_real_ecg/esp32_ecg_real_ecg.ino  dans Arduino IDE
+   - Carte : "ESP32 Dev Module" (ou ta carte)
+   - Televerse (Upload)
+   - Moniteur serie (921600 baud) -> tu dois voir :
+        "En attente du vrai ECG via USB (Python)..."
+        "BLE >> Advertising started"
+   - !! FERME le moniteur serie apres (sinon il bloque le port pour Python) !!
+
+
+=====================================================================
+ETAPE 2 — LANCER LE SERVEUR IA
+=====================================================================
+   Dans cmd :
+        cd "C:\Users\SMART-TECH29\OneDrive\Documents\ECG_Final_Pipeline"
+        python -m uvicorn ai_server:app --host 0.0.0.0 --port 8000
+   Attends : "Models loaded successfully" + "Uvicorn running on http://0.0.0.0:8000"
+   Laisse cette fenetre OUVERTE.
+
+
+=====================================================================
+ETAPE 3 — ENVOYER LE VRAI ECG A L'ESP32
+=====================================================================
+   Dans une AUTRE fenetre cmd :
+        cd "C:\Users\SMART-TECH29\OneDrive\Documents\ECG_Final_Pipeline"
+        python send_ecg_to_esp32.py
+   Tu dois voir :
+        "envoye 0/5000 ... 5000/5000"
+        "ESP32: REAL_ECG_LOADED"   <- confirme que l'ESP32 a recu le vrai ECG
+   (ECG_INDEX 214 = un cas CD / conduction. Change ECG_INDEX pour un autre patient.)
+
+
+=====================================================================
+ETAPE 4 — CONNECTER LE MOBILE
+=====================================================================
+   - Ouvre ton application mobile
+   - Connecte-toi au Bluetooth "ECG_ESP32"
+   - L'app recoit l'ECG (le VRAI maintenant) et l'envoie au serveur IA
+   - Le serveur renvoie le diagnostic -> affiche sur le mobile
+
+
+=====================================================================
+ORDRE IMPORTANT
+=====================================================================
+   1. Flasher ESP32  (et FERMER le moniteur serie)
+   2. Lancer le serveur IA
+   3. Lancer send_ecg_to_esp32.py  (-> "REAL_ECG_LOADED")
+   4. Connecter le mobile
+
+   Tant que Python n'a pas envoye l'ECG, l'ESP32 envoie un ECG DEMO (fallback).
+   Des que "REAL_ECG_LOADED" apparait -> l'ESP32 envoie le VRAI ECG.
+
+
+=====================================================================
+PROBLEMES FREQUENTS
+=====================================================================
+ - "could not open port COM3" : mauvais port OU moniteur serie Arduino encore ouvert.
+ - Mobile recoit l'ECG demo   : Python pas encore lance (pas de "REAL_ECG_LOADED").
+ - Mobile ne joint pas le serveur : PC + mobile pas sur le meme WiFi, ou mauvaise IP.
+ - Diagnostic bizarre         : normal si l'ECG demo est encore envoye (lance Python).

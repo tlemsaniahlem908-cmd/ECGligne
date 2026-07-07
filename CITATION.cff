@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ECGligne — Intelligent 12-Lead ECG Telesurveillance & AI Diagnosis"
+type: software
+authors:
+  - family-names: "Tlemsani"
+    given-names: "Ahlem"
+year: 2026
+license: MIT
+abstract: >-
+  Deep-learning inference pipeline for a 12-lead ECG cardiac telesurveillance system.
+  A hybrid ensemble (ResNet1D-SE, InceptionTime, TCN) classifies 10-second, 500 Hz
+  12-lead ECG recordings from the PTB-XL dataset into NORMAL, Myocardial Infarction (MI),
+  ST/T Change (STTC) or Conduction Disturbance (CD). Master's thesis, University of
+  Oran 1 Ahmed Ben Bella, Algeria.
+keywords:
+  - electrocardiogram
+  - deep-learning
+  - PTB-XL
+  - telesurveillance
+  - ESP32
