@@ -19,6 +19,14 @@ on PTB-XL. They run on a GPU (developed on Google Vertex AI, NVIDIA L4).
    - `DATA_DIR`   → the dataset folder produced in step 1
    - `OUTPUT_DIR` → where to write the checkpoints / metrics
 
+3. **Model B** (pathology diagnosis) reuses the same architectures with **transfer
+   learning** from the Model A fold checkpoints:
+   ```bash
+   python train_modelB_mi_vs_sttc.py   # MI vs STTC (transfer from Model A)
+   ```
+   Set `MODEL_A_DIR` to the Model A output folder; if a fold checkpoint is missing it
+   falls back to the generic SimCLR encoder.
+
 ## Notes
 
 - Paths inside the scripts point to the original Vertex AI environment
