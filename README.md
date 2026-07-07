@@ -30,7 +30,6 @@ physician desktop app; this repo focuses on the **reproducible AI / signal pipel
 - [Repository layout](#repository-layout)
 - [Installation](#installation)
 - [Running the AI server](#running-the-ai-server)
-- [End-to-end hardware chain](#end-to-end-hardware-chain-esp32--ble--ai)
 - [Model weights & data](#model-weights--data)
 - [Dataset & citation](#dataset--citation)
 - [Authors](#authors)
@@ -121,14 +120,10 @@ When several pathologies coexist, labels follow a clinically-motivated priority
 ECG_Final_Pipeline/
 ├── ai_server.py            # FastAPI server — POST /predict_ecg  (.hea + .dat → diagnosis)
 ├── predict.py             # standalone cascade decision logic (pA, pA1, B3 → label)
-├── predict_live_ecg.py    # 5-fold ensemble inference on a live .npy ECG
+├── predict_live_ecg.py    # 5-fold ensemble inference on a stored .npy ECG
 ├── model_defs.py          # architectures (ResNet/Inception/TCN hybrids) + feature/rule extraction
-├── send_ecg_to_esp32.py   # stream a real PTB-XL ECG to the ESP32 over USB serial
-├── esp_diag.py / esp_monitor.py   # ESP32 serial diagnostics
-├── esp32_ecg_real_ecg/    # ESP32 firmware (Arduino .ino) — receives ECG, streams via BLE
-├── training/              # dataset label prep + full training script (Models A / A1)
-├── results/               # per-model JSON metric reports (committed)
-└── GUIDE_TEST.txt         # step-by-step end-to-end test guide (FR)
+├── training/              # dataset label prep + full training scripts (Models A / A1 / B)
+└── results/               # per-model JSON metric reports (committed)
 ```
 
 Model weights (`*.pt`) and the PTB-XL–derived arrays (`*.npy`) are **not** committed — see
@@ -173,17 +168,6 @@ Example response from `POST /predict_ecg`:
 ```
 
 You can also run the offline ensemble on a stored signal: `python predict_live_ecg.py`.
-
----
-
-## End-to-end hardware chain (ESP32 → BLE → AI)
-
-```
-Python (real PTB-XL ECG) --USB--> ESP32 --BLE--> Mobile app --WiFi--> AI server --> diagnosis
-```
-
-The full test procedure (flashing the ESP32, launching the server, streaming a real ECG)
-is documented in [`GUIDE_TEST.txt`](GUIDE_TEST.txt).
 
 ---
 
