@@ -1,0 +1,34 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- Temp / runtime ---
+temp_ai/
+*.~*
+.~*
+
+# --- Model weights (distributed via GitHub Releases, ~1.1 GB) ---
+model_A/
+model_A1/
+model_B3/
+*.pt
+
+# --- PTB-XL processed arrays (~12 GB, NOT redistributable — see PTB-XL license) ---
+ptbxl_processed_modelA_strong/
+ptbxl_processed_modelA1_strong/
+ptbxl_processed_modelB_3class/
+
+# --- Large local artifacts (npy signals, probs, features) ---
+*.npy
+*.npz
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- keep committed figures even though they are images ---
+!docs/figures/*.png

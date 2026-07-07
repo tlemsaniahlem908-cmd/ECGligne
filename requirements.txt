@@ -1,0 +1,12 @@
+# Core AI / signal pipeline
+numpy>=1.24
+torch>=2.0
+wfdb>=4.1
+
+# AI server (ai_server.py)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+
+# ESP32 serial streaming (send_ecg_to_esp32.py, esp_diag.py, esp_monitor.py)
+pyserial>=3.5
