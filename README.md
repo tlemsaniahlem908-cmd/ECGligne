@@ -215,7 +215,7 @@ If you use this repository, please also cite the thesis (see [`CITATION.cff`](CI
 
 ## Author
 
-- **Tlemsani Ahlem** — Computer Science Department, University of Oran 1 Ahmed Ben Bella, Algeria (2026).
+- **Tlemsani Ahlem** — Computer Science Department, **Artificial Intelligence** (M.Sc. ADSI), University of Oran 1 Ahmed Ben Bella, Algeria (2026).
 
 ---
 
