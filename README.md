@@ -84,9 +84,13 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 | **Accuracy** | **90.11 %** |
 | **AUC-ROC** | **0.9654** |
 | F1-score (macro) | 90.10 % |
+| F1-score (NORM) | 90.42 % |
+| F1-score (ABNORMAL) | 89.78 % |
+| Precision (NORM) | 89.19 % |
+| Precision (ABNORMAL) | 91.12 % |
 | Sensitivity (recall ABNORMAL) | 88.47 % |
 | Specificity (recall NORM) | 91.69 % |
-| Confusion (TN / FP / FN / TP) | 883 / 80 / 107 / 821 |
+| Confusion — TN / FP / FN / TP | 883 / 80 / 107 / 821 |
 
 <sub>Per-artifact reports: **Model A** (NORM vs MI+STTC) — OOF Acc 90.96 %, AUC 0.9703 ·
 **Model A1** (NORM vs MI+STTC+CD) — Test Acc 88.63 %, AUC 0.9551. See [`results/`](results/).</sub>
@@ -101,6 +105,7 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 | **STTC** — ST/T Change | 0.766 | 0.823 | 0.793 | 0.926 | 378 |
 | **CD** — Conduction Disturbance | 0.753 | 0.768 | 0.761 | **0.940** | 211 |
 | **Macro avg** | 0.790 | 0.797 | 0.793 | 0.925 | 1139 |
+| **Weighted avg** | 0.804 | 0.802 | 0.802 | — | 1139 |
 
 Pairwise separability: **STTC vs CD** 91.0 % (AUC 0.948) · **MI vs CD** 89.5 % (AUC 0.935) ·
 **MI vs STTC** 85.2 % (AUC 0.919 — the hardest pair, as infarction and repolarization
