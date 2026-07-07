@@ -1,26 +1,8 @@
 {
-  "model": "Model A1 \u2014 NORM vs MI+STTC+CD",
+  "model": "Model A1 — NORM vs MI+STTC+CD",
   "type": "binary sigmoid",
   "threshold": 0.315,
-  "test_metrics": {
-    "threshold": 0.315,
-    "accuracy": 0.8862987630827783,
-    "roc_auc": 0.9550679806027587,
-    "f1_macro": 0.8860143409495758,
-    "f1_weighted": 0.8864910866204677,
-    "f1_NORM": 0.8803204807210816,
-    "f1_ABNORMAL": 0.8917082011780698,
-    "precision_NORM": 0.8500967117988395,
-    "precision_ABNORMAL": 0.9213483146067416,
-    "recall_NORM": 0.9127725856697819,
-    "recall_ABNORMAL": 0.8639157155399473,
-    "specificity_NORM": 0.9127725856697819,
-    "sensitivity_ABNORMAL": 0.8639157155399473,
-    "tn": 879,
-    "fp": 84,
-    "fn": 155,
-    "tp": 984
-  },
+  "metrics_type": "out-of-fold cross-validation (5 folds)",
   "oof_metrics": {
     "threshold": 0.315,
     "accuracy": 0.9012852647858781,
