@@ -93,7 +93,7 @@ Evaluated on the official **PTB-XL** stratified test fold (fold 10), unseen duri
 | Confusion — TN / FP / FN / TP | 883 / 80 / 107 / 821 |
 
 <sub>Per-artifact reports: **Model A** (NORM vs MI+STTC) — OOF Acc 90.96 %, AUC 0.9703 ·
-**Model A1** (NORM vs MI+STTC+CD) — Test Acc 88.63 %, AUC 0.9551. See [`results/`](results/).</sub>
+**Model A1** (NORM vs MI+STTC+CD) — OOF Acc 90.13 %, AUC 0.9648. See [`results/`](results/).</sub>
 
 ### Multiclass diagnosis — MI / STTC / CD
 
